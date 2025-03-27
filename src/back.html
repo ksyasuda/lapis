@@ -512,6 +512,23 @@
         frequency.innerHTML = freqHtml;
     }
 
+    function setupFreqDropdown() {
+        const dropdown = document.querySelector('.freq-dropdown');
+        const list = dropdown?.querySelector('.freq-list-container');
+
+        if (!dropdown || !list) return;
+
+        dropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+            list.classList.toggle('visible');
+        });
+
+        document.body.addEventListener('click', () => {
+            list.classList.remove('visible');
+        });
+    }
+
+
     // Sets the height of dhLeft, dhRight, defHeader as a whole
     function setDHHeight() {
         var dhLeft = document.querySelector('.dh-left');
@@ -564,6 +581,7 @@
         setUpDefToggle();
         clickImages();
         formatFrequencyList();
+        setupFreqDropdown();
         setDHHeight();
         hideCorrectDefinition();
         movePrimaryDicts();
